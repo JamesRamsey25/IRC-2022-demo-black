@@ -59,6 +59,7 @@ public class Robot extends TimedRobot {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
+    m_robotContainer.drivetrain.drive(0, 0);
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
@@ -74,6 +75,7 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+    m_robotContainer.drivetrain.drive(m_robotContainer.leftJoy.getRawAxis(0), m_robotContainer.rightJoy.getRawAxis(0));
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }

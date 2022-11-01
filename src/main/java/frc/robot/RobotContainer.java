@@ -5,8 +5,11 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.Drive;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -22,24 +25,17 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-  private Joystick leftJoy = new Joystick(0);
-  private Joystick rightJoy = new Joystick(1);
+  public Joystick leftJoy = new Joystick(0);
+  public Joystick rightJoy = new Joystick(1);
 
-  private Joystick raiseArmBtn = new JoystickButton(0, 0);
-  private Joystick lowerArmBtn = new JoystickButton(0, 1);
+  public Drivetrain drivetrain = new Drivetrain();
 
-  private Drivetrain drivetrain = new Drivetrain();
-  private Arm arm = new Arm();
-
-  private Drive drive = new Drive(drivetrain, leftJoy.getRawAxis(1), rightJoy.getRawAxis(1));
-  private MoveArm raiseArm = new MoveArm(arm, Direction.FORWARDS);
-  private MoveArm lowerArm = new MoveArm(arm, Direction.BACKWARDS);
+  // public Drive drive = new Drive(drivetrain, leftJoy.getRawAxis(1), rightJoy.getRawAxis(1));
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
-    drivetrain.setDefaultCommand(drive);
-    arm.setDefaultCommand(moveArm);
+    // drivetrain.setDefaultCommand(drive);
 
     configureButtonBindings();
   }
@@ -51,8 +47,6 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    raiseArmBtn.whenHeld(raiseArm);
-    lowerArmBtn.whenHeld(lowerArm);
   }
 
   /**
