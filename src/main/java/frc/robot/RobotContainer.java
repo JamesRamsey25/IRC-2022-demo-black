@@ -30,7 +30,7 @@ public class RobotContainer {
 
   public Drivetrain drivetrain = new Drivetrain();
 
-  // public Drive drive = new Drive(drivetrain, leftJoy.getRawAxis(1), rightJoy.getRawAxis(1));
+  public Drive drive = new Drive(drivetrain, leftJoy.getY(), rightJoy.getY());
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
